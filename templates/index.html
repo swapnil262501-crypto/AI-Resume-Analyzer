@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Resume Analyzer</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin:0;
+    padding:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff6a00, #ff0080);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+}
+
+.container {
+    background: rgba(255,255,255,0.95);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    text-align:center;
+    width:450px;
+}
+
+h2 {color:#2575fc; margin-bottom:30px; font-size:28px;}
+
+input[type=file]{ display:none; }
+
+.custom-file-upload{
+    display:inline-block;
+    padding:15px 30px;
+    cursor:pointer;
+    background-color:#6a11cb;
+    color:white;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    transition: all 0.3s ease;
+    box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+.custom-file-upload:hover{
+    background-color:#2575fc;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+.file-name{
+    margin-top:15px;
+    font-size:14px;
+    color:#555;
+    font-weight:bold;
+}
+
+input[type=submit]{
+    margin-top:20px;
+    padding:12px 35px;
+    font-size:16px;
+    font-weight:bold;
+    border:none;
+    border-radius:12px;
+    background-color:#2575fc;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+input[type=submit]:hover{
+    background-color:#6a11cb;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+.watermark{
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    font-size:12px;
+    color:rgba(255,255,255,0.5);
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>AI Resume Analyzer</h2>
+<form method="POST" action="/result" enctype="multipart/form-data">
+    <label for="resume" class="custom-file-upload">Choose Resume PDF</label>
+    <input id="resume" type="file" name="resume" accept=".pdf" required>
+    <div class="file-name" id="file-name">No file selected</div>
+    <input type="submit" value="Analyze Resume">
+</form>
+</div>
+
+<div class="watermark">swapnil262501-crypto</div>
+
+<script>
+const fileInput = document.getElementById('resume');
+const fileName = document.getElementById('file-name');
+
+// ✅ Update file-name dynamically when user selects a PDF
+fileInput.addEventListener('change', function(){
+    if(fileInput.files.length > 0){
+        fileName.textContent = "Selected File: " + fileInput.files[0].name;
+    } else {
+        fileName.textContent = "No file selected";
+    }
+});
+</script>
+</body>
+</html>
